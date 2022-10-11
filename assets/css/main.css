@@ -119,7 +119,6 @@ button,select{
     text-transform:none
 }
 button,html input[type="button"],input[type="reset"],input[type="submit"]{
-    -webkit-appearance:button;
     cursor:pointer
 }
 button[disabled],html input[disabled]{
@@ -139,13 +138,7 @@ input[type="checkbox"],input[type="radio"]{
 input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{
     height:auto
 }
-input[type="search"]{
-    -webkit-appearance:textfield;
-    box-sizing:content-box
-}
-input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{
-    -webkit-appearance:none
-}
+
 fieldset{
     border:1px solid #c0c0c0;
     margin:0 2px;
@@ -1012,8 +1005,8 @@ body{
 }
 .about--banner img{
     position:absolute;
-    bottom:-90px;
-    right:-12px
+    bottom:-0px;
+    right:-12px;
 }
 .about--options{
     display:-webkit-box;
@@ -1040,6 +1033,11 @@ body{
     background-size:cover;
     background-repeat:no-repeat
 }
+.about--banner-image img{
+    border-radius: 50%;
+    filter: brightness(70%);
+}
+
 .about--options>a:nth-child(1){
     background-image:url("../img/f12.jpg")
 }
@@ -1124,9 +1122,7 @@ body{
     left:0;
     width:100%;
     height:100%;
-    background-image:url("https://previews.123rf.com/images/inkdrop/inkdrop1909/inkdrop190901929/130825943-urban-vector-city-map-of-utrecht-the-netherlands.jpg?fj=1") ;
-    filter: brightness(40%);
-
+    background-image:url("../img/utrechtdom.avif");
     background-position:center;
     background-size:cover;
     background-repeat:no-repeat
