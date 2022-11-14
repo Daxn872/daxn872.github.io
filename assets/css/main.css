@@ -26,6 +26,7 @@
     font-weight:300;
     font-style:normal
 }
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html{
     font-family:sans-serif;
@@ -1120,7 +1121,7 @@ body{
     left:0;
     width:100%;
     height:100%;
-    background-image:url("../img/utrechtdom.avif");
+    background-image:url("../img/utrechtt.png");
     background-position:center;
     background-size:cover;
     background-repeat:no-repeat
