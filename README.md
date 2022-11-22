@@ -21,3 +21,18 @@ USED TECHNOLOGIES
   * Adobe Photoshop
   * Adobe Illustrator
   * Adobe XD
+
+
+
+  FONTS
+  * montserrat 
+    * Black
+     * Bold
+      * Regular
+       * Light
+        
+
+  COLORS 
+   * #0f33ff;
+   * #ffffff;
+     
