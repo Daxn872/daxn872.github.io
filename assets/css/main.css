@@ -1548,19 +1548,19 @@ body{
     }
 }
 .outer-nav li.is-vis:nth-child(2){
-    -webkit-transition-delay:.04s;
-    transition-delay:.04s
+    -webkit-transition-delay:.06s;
+    transition-delay:.06s
 }
 .outer-nav li.is-vis:nth-child(3){
-    -webkit-transition-delay:.08s;
-    transition-delay:.08s
+    -webkit-transition-delay:.10s;
+    transition-delay:.10s
 }
 .outer-nav li.is-vis:nth-child(4){
-    -webkit-transition-delay:.12s;
-    transition-delay:.12s
+    -webkit-transition-delay:.14s;
+    transition-delay:.14s
 }
 .outer-nav li.is-vis:nth-child(5){
-    -webkit-transition-delay:.16s;
-    transition-delay:.16s
+    -webkit-transition-delay:.18s;
+    transition-delay:.18s
 }
  

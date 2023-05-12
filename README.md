@@ -43,4 +43,3 @@ USED TECHNOLOGIES
     * [Behance](https://www.behance.net/daxn872)
     * [Instagram](https://www.instagram.com/daanweverss/)
     * [Twitter](https://twitter.com/daxn872)    
-s
