@@ -1,0 +1,81 @@
+@media (max-width: 768px) {
+  h1 { @apply text-3xl; }
+  h2 { @apply text-2xl; }
+  h3 { @apply text-xl; }
+
+  .hero-glow {
+    filter: blur(70px); /* Less blur on mobile */
+    opacity: 0.15;
+  }
+  .hero-glow-1 { width: 70vw; height: 70vw; left: -35vw; top: -15vh; opacity: 0.2; }
+  .hero-glow-2 { width: 60vw; height: 60vw; right: -30vw; top: 10vh; opacity: 0.15; }
+  /* hero-glow-3 is already display: none */
+  
+  .grid-pattern {
+    background-size: 50px 50px; 
+    opacity: 0.15; /* Even more subtle on mobile */
+  }
+
+  .crypto-card {
+    backdrop-filter: blur(8px); 
+    transform: none !important;
+    box-shadow: 0 3px 10px hsl(var(--background) / 0.4);
+  }
+  .crypto-card:hover {
+    box-shadow: 0 3px 10px hsl(var(--background) / 0.4); /* No extra glow on mobile hover for cleanliness */
+    border-color: hsl(var(--primary) / 0.3); 
+  }
+
+  .btn-glow::before {
+    filter: blur(8px);
+  }
+  .btn-glow:hover {
+    transform: none;
+    box-shadow: 0 2px 8px 0 hsl(var(--primary) / 0.3); 
+  }
+  .btn-glow:hover::before {
+    opacity: 0; 
+  }
+
+  /* Parallax Section Mobile Adjustments */
+  .parallax-section-title { 
+    @apply text-2xl sm:text-3xl mb-2; /* Reduced margin bottom */
+  }
+  .parallax-section-description {  
+    @apply text-sm sm:text-base;
+  }
+}
+
+/* Fallback for browsers not supporting backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+  .crypto-card {
+    background-color: hsl(var(--card) / 0.98); /* Very opaque fallback */
+  }
+  body {
+    /* Consider a very simple static background image if aurora-background is too heavy */
+  }
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  .animate-float,
+  .crypto-gradient,
+  .aurora-background,
+  .shine,
+  .pulse-subtle {
+    animation: none !important;
+  }
+  
+  .btn-glow,
+  .crypto-card,
+  .hero-glow {
+    transition: none !important;
+  }
+  .btn-glow:hover, .crypto-card:hover {
+    transform: none !important;
+  }
+}

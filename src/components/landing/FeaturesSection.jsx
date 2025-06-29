@@ -1,75 +1,90 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, TrendingUp, Shield, Users } from 'lucide-react';
+import { TrendingUp, Users, BrainCircuit, ShieldCheck } from 'lucide-react';
 
-const FeatureCard = ({ icon: Icon, title, description, delay }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay }}
-    viewport={{ once: true }}
-    className="p-6 rounded-2xl bg-card/30 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-colors"
-  >
-    <div className="h-12 w-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4">
-      <Icon className="h-6 w-6 text-primary" />
-    </div>
-    <h3 className="text-xl font-semibold mb-2">{title}</h3>
-    <p className="text-muted-foreground">{description}</p>
-  </motion.div>
-);
+const features = [
+  {
+    icon: TrendingUp,
+    title: "Actionable Insights",
+    description: "Clear, concise analysis on market trends and opportunities, cutting through the noise.",
+  },
+  {
+    icon: BrainCircuit,
+    title: "Smarter Tools",
+    description: "Access our suite of proprietary tools designed to help you analyze, track, and manage your portfolio.",
+  },
+  {
+    icon: Users,
+    title: "A Private Network",
+    description: "Connect with a vetted community of peers who are building, investing, and thinking for the long-term.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Resilient Strategies",
+    description: "Learn and apply frameworks for portfolio construction and risk management for sustainable growth.",
+  }
+];
 
-const FeaturesSection = ({ companyName }) => {
-  const features = [
-    {
-      icon: Search,
-      title: 'Early Project Finds',
-      description: 'Get exclusive access to hidden gems and promising projects before they go mainstream.',
-      delay: 0.2
-    },
-    {
-      icon: TrendingUp,
-      title: 'Market Analysis',
-      description: 'Deep-dive market analysis and trending opportunities in the crypto space.',
-      delay: 0.3
-    },
-    {
-      icon: Shield,
-      title: 'Risk Management',
-      description: 'Professional risk management strategies to protect your investments.',
-      delay: 0.4
-    },
-    {
-      icon: Users,
-      title: 'Expert Community',
-      description: 'Join a community of professional traders and market analysts.',
-      delay: 0.5
+const FeaturesSection = () => {
+  const sectionVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
     }
-  ];
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: -30 },
+    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15, duration: 0.8 } }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { type: 'spring', stiffness: 80, damping: 15, duration: 0.7 }
+    }
+  };
 
   return (
-    <section className="py-20 px-4">
-      <div className="container mx-auto">
+    <motion.section 
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      className="py-20 md:py-28 bg-secondary/30 dark:bg-secondary/30"
+    >
+      <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
+          variants={titleVariants}
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl font-bold mb-4">Why Choose {companyName}?</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Access early opportunities and expert analysis to maximize your potential in the crypto market
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Get The Unfair Advantage</h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+            We've built the toolkit every modern investor needs to get ahead and stay ahead.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <FeatureCard key={index} {...feature} />
+            <motion.div
+              key={feature.title}
+              variants={cardVariants}
+              className="bg-card rounded-xl border border-border/50 dark:border-border p-6 text-center flex flex-col items-center"
+            >
+              <div className="p-3 bg-primary/10 rounded-lg mb-5 inline-block">
+                <feature.icon className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">{feature.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{feature.description}</p>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

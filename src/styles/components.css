@@ -1,0 +1,65 @@
+/* Button Style */
+.btn-primary {
+  position: relative;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  transition: all 0.2s ease-out;
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+  box-shadow: 0 2px 4px 0 hsl(var(--primary) / 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px 0 hsl(var(--primary) / 0.25); 
+}
+
+.btn-primary:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 2px 5px 0 hsl(var(--primary) / 0.2);
+}
+
+/* Card Style */
+.content-card {
+  @apply bg-card text-card-foreground rounded-2xl border border-border/50 dark:border-border transition-all duration-300 ease-out; 
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+  box-shadow: 0 4px 20px hsl(var(--background) / 0.1); /* Adjusted for light theme */
+}
+
+.dark .content-card {
+   box-shadow: 0 4px 20px hsl(var(--background) / 0.5); /* Original dark theme shadow */
+}
+
+
+.content-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px hsl(var(--primary) / 0.1);
+  border-color: hsl(var(--primary) / 0.3);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted)); 
+  border-radius: 10px;
+  border: 2px solid transparent; 
+  background-clip: content-box;
+  transition: background 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Premium Pricing Card Style */
+.pricing-premium-border {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 8px 40px hsl(var(--primary) / 0.15);
+}

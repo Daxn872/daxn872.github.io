@@ -1,0 +1,24 @@
+.accent-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-400;
+}
+
+.dark .accent-gradient {
+   @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-400; /* Ensure this is the dark mode version if needed */
+}
+
+.gold-text {
+  color: hsl(var(--accent));
+}
+
+.animate-spin-slow {
+  animation: spin 15s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,122 @@
+:root {
+  /* Light Theme Variables */
+  --background-light: 0 0% 100%; /* White */
+  --foreground-light: 222.2 84% 4.9%; /* Dark Gray */
+  --card-light: 0 0% 100%; /* White */
+  --card-foreground-light: 222.2 84% 4.9%; /* Dark Gray */
+  --popover-light: 0 0% 100%; /* White */
+  --popover-foreground-light: 222.2 84% 4.9%; /* Dark Gray */
+  --primary-light: 120 60% 45%; /* Darker Green for light background */
+  --primary-foreground-light: 0 0% 100%; /* White */
+  --secondary-light: 210 40% 96.1%; /* Light Gray */
+  --secondary-foreground-light: 222.2 47.4% 11.2%; /* Dark Blue-Gray */
+  --muted-light: 210 40% 90%; /* Medium Gray */
+  --muted-foreground-light: 215.4 16.3% 46.9%; /* Gray */
+  --accent-light: 45 90% 45%; /* Gold for light */
+  --accent-foreground-light: 222.2 47.4% 11.2%; /* Dark Blue-Gray */
+  --destructive-light: 0 84.2% 60.2%; /* Red */
+  --destructive-foreground-light: 0 0% 100%; /* White */
+  --border-light: 214.3 31.8% 91.4%; /* Light Border */
+  --input-light: 214.3 31.8% 91.4%; /* Light Input */
+  --ring-light: 120 60% 45%; /* Darker Green Ring */
+  --growth-light: 120 60% 45%; /* Darker Green for growth stats */
+
+  /* Dark Theme Variables (current setup) */
+  --background-dark: 224 71% 4%; 
+  --foreground-dark: 210 40% 98%; 
+  --card-dark: 224 71% 6%; 
+  --card-foreground-dark: 210 40% 98%; 
+  --popover-dark: 224 71% 4%; 
+  --popover-foreground-dark: 210 40% 98%; 
+  --primary-dark: 120 60% 59%; 
+  --primary-foreground-dark: 224 71% 10%;
+  --secondary-dark: 217 33% 17%; 
+  --secondary-foreground-dark: 210 40% 98%; 
+  --muted-dark: 217 33% 25%; 
+  --muted-foreground-dark: 215 28% 65%; 
+  --accent-dark: 45 100% 51%; 
+  --accent-foreground-dark: 210 40% 98%; 
+  --destructive-dark: 0 72% 51%; 
+  --destructive-foreground-dark: 210 40% 98%; 
+  --border-dark: 217 33% 22%; 
+  --input-dark: 217 33% 22%; 
+  --ring-dark: 120 60% 59%; 
+  --growth-dark: 120 60% 59%;
+
+  /* Default to light theme variables */
+  --background: var(--background-light);
+  --foreground: var(--foreground-light);
+  --card: var(--card-light);
+  --card-foreground: var(--card-foreground-light);
+  --popover: var(--popover-light);
+  --popover-foreground: var(--popover-foreground-light);
+  --primary: var(--primary-light);
+  --primary-foreground: var(--primary-foreground-light);
+  --secondary: var(--secondary-light);
+  --secondary-foreground: var(--secondary-foreground-light);
+  --muted: var(--muted-light);
+  --muted-foreground: var(--muted-foreground-light);
+  --accent: var(--accent-light);
+  --accent-foreground: var(--accent-foreground-light);
+  --destructive: var(--destructive-light);
+  --destructive-foreground: var(--destructive-foreground-light);
+  --border: var(--border-light);
+  --input: var(--input-light);
+  --ring: var(--ring-light);
+  --growth: var(--growth-light);
+  
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: var(--background-dark);
+  --foreground: var(--foreground-dark);
+  --card: var(--card-dark);
+  --card-foreground: var(--card-foreground-dark);
+  --popover: var(--popover-dark);
+  --popover-foreground: var(--popover-foreground-dark);
+  --primary: var(--primary-dark);
+  --primary-foreground: var(--primary-foreground-dark);
+  --secondary: var(--secondary-dark);
+  --secondary-foreground: var(--secondary-foreground-dark);
+  --muted: var(--muted-dark);
+  --muted-foreground: var(--muted-foreground-dark);
+  --accent: var(--accent-dark);
+  --accent-foreground: var(--accent-foreground-dark);
+  --destructive: var(--destructive-dark);
+  --destructive-foreground: var(--destructive-foreground-dark);
+  --border: var(--border-dark);
+  --input: var(--input-dark);
+  --ring: var(--ring-dark);
+  --growth: var(--growth-dark);
+}
+
+body {
+  @apply bg-background text-foreground;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@supports (font-variation-settings: normal) {
+  body {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight;
+}
+
+h1 { @apply text-4xl md:text-5xl; }
+h2 { @apply text-3xl md:text-4xl; }
+h3 { @apply text-2xl md:text-3xl; }
+
+p {
+  @apply leading-relaxed text-muted-foreground;
+}
+
+a {
+  @apply text-primary hover:text-primary/80 transition-colors;
+}
