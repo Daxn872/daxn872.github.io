@@ -195,6 +195,10 @@ logger.error = (msg, options) => {
 
 export default defineConfig({
   base: "/", // <--- Add this line
+  plugins: [react()],
+  build: {
+    outDir: "dist",
+  },
   customLogger: logger,
   plugins: [
     ...(isDev ? [inlineEditPlugin(), editModeDevPlugin()] : []),
