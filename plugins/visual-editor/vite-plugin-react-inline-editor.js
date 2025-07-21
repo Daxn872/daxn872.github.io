@@ -9,7 +9,7 @@ import fs from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const VITE_PROJECT_ROOT = path.resolve(__dirname, '../..');
-const EDITABLE_HTML_TAGS = ["a", "Button", "button", "p", "span", "h1", "h2", "h3", "h4"];
+const EDITABLE_HTML_TAGS = ["a", "Button", "button", "p", "span", "h1", "h2", "h3", "h4", "h5", "h6", "label", "Label"];
 
 function parseEditId(editId) {
   const parts = editId.split(':');
@@ -25,7 +25,7 @@ function parseEditId(editId) {
   if (!filePath || isNaN(line) || isNaN(column)) {
     return null;
   }
-  
+
   return { filePath, line, column };
 }
 
@@ -46,7 +46,7 @@ function checkTagNameEditable(openingElementNode, editableTagsList) {
     return false;
 }
 
-export default function inlineEditPlugin() {  
+export default function inlineEditPlugin() {
   return {
     name: 'vite-inline-edit-plugin',
     enforce: 'pre',
@@ -97,9 +97,9 @@ export default function inlineEditPlugin() {
               // Condition 2: Does the element have dynamic or editable children
               if (t.isJSXElement(elementNode) && elementNode.children) {
                 // Check if element has {...props} spread attribute - disable editing if it does
-                const hasPropsSpread = openingNode.attributes.some(attr => t.isJSXSpreadAttribute(attr) 
-                && attr.argument  
-                && t.isIdentifier(attr.argument) 
+                const hasPropsSpread = openingNode.attributes.some(attr => t.isJSXSpreadAttribute(attr)
+                && attr.argument
+                && t.isIdentifier(attr.argument)
                 && attr.argument.name === 'props'
                 );
 
@@ -155,7 +155,7 @@ export default function inlineEditPlugin() {
                       );
                       openingNode.attributes.push(disabledAttribute);
                       attributesAdded++;
-                      return; 
+                      return;
                   }
               }
 
@@ -175,11 +175,11 @@ export default function inlineEditPlugin() {
                   }
                   currentAncestorCandidatePath = ancestorJsxElementPath.parentPath;
               }
-              
+
               const line = openingNode.loc.start.line;
               const column = openingNode.loc.start.column + 1;
               const editId = `${webRelativeFilePath}:${line}:${column}`;
-              
+
               const idAttribute = t.jsxAttribute(
                 t.jsxIdentifier('data-edit-id'),
                 t.stringLiteral(editId)
@@ -269,7 +269,7 @@ export default function inlineEditPlugin() {
             const generateFunction = generate.default || generate;
             const parentElementNode = targetNodePath.parentPath?.node;
             let beforeCode = '';
-            
+
             if (parentElementNode && t.isJSXElement(parentElementNode)) {
               const beforeOutput = generateFunction(parentElementNode, {});
               beforeCode = beforeOutput.code;
@@ -301,20 +301,20 @@ export default function inlineEditPlugin() {
             const newContent = output.code;
 
             try {
-              fs.writeFileSync(absoluteFilePath, newContent, 'utf-8'); 
+              fs.writeFileSync(absoluteFilePath, newContent, 'utf-8');
             } catch (writeError) {
               console.error(`[vite][visual-editor] Error during direct write for ${filePath}:`, writeError);
               throw writeError;
             }
 
             res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ 
-                success: true, 
+            res.end(JSON.stringify({
+                success: true,
                 newFileContent: newContent,
                 beforeCode,
                 afterCode,
             }));
-            
+
           } catch (error) {
             res.writeHead(500, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: 'Internal server error during edit application.' }));
@@ -323,4 +323,4 @@ export default function inlineEditPlugin() {
       });
     }
   };
-} 
+}

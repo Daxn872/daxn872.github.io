@@ -103,7 +103,7 @@ function extractHelmetData(content, filePath, routes) {
   const description = cleanText(descMatch?.[1]);
   
   const fileName = path.basename(filePath, path.extname(filePath));
-  const url = routes.has(fileName) 
+  const url = routes.length && routes.has(fileName) 
     ? routes.get(fileName) 
     : generateFallbackUrl(fileName);
   
@@ -116,7 +116,7 @@ function extractHelmetData(content, filePath, routes) {
 
 function generateFallbackUrl(fileName) {
   const cleanName = fileName.replace(/Page$/, '').toLowerCase();
-  return cleanName === 'home' || fileName === 'index' ? '/' : `/${cleanName}`;
+  return cleanName === 'app' ? '/' : `/${cleanName}`;
 }
 
 function generateLlmsTxt(pages) {
@@ -147,23 +147,25 @@ function processPageFile(filePath, routes) {
 function main() {
   const pagesDir = path.join(process.cwd(), 'src', 'pages');
   const appJsxPath = path.join(process.cwd(), 'src', 'App.jsx');
+
+  let pages = [];
   
   if (!fs.existsSync(pagesDir)) {
-    console.error('Error: src/pages directory not found!');
-    console.error('Make sure you\'re running this script from your project root.');
-    process.exit(1);
+    pages.push(processPageFile(appJsxPath, []));
+  } else {
+    const routes = extractRoutes(appJsxPath);
+    const reactFiles = findReactFiles(pagesDir);
+
+    pages = reactFiles
+      .map(filePath => processPageFile(filePath, routes))
+      .filter(Boolean);
+    
+    if (pages.length === 0) {
+      console.error('❌ No pages with Helmet components found!');
+      process.exit(1);
+    }
   }
-  
-  const routes = extractRoutes(appJsxPath);
-  const reactFiles = findReactFiles(pagesDir);
-  const pages = reactFiles
-    .map(filePath => processPageFile(filePath, routes))
-    .filter(Boolean);
-  
-  if (pages.length === 0) {
-    console.error('❌ No pages with Helmet components found!');
-    process.exit(1);
-  }
+
 
   const llmsTxtContent = generateLlmsTxt(pages);
   const outputPath = path.join(process.cwd(), 'public', 'llms.txt');
