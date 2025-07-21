@@ -1,5 +1,5 @@
 {
-  "homepage": "https://nonelimits.com",
+  "homepage": "https://daxn872.github.io",
   "name": "crypto-landing",
   "type": "module",
   "version": "0.0.0",
@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.1",
