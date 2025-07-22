@@ -192,19 +192,15 @@ logger.error = (msg, options) => {
 
   loggerError(msg, options);
 };
-
 export default defineConfig({
-  base: "/", // <--- Add this line
-  plugins: [react()],
-  build: {
-    outDir: "dist",
-  },
-  customLogger: logger,
+  base: "/", // This is fine for nonelimits.com
+
   plugins: [
     ...(isDev ? [inlineEditPlugin(), editModeDevPlugin()] : []),
     react(),
     addTransformIndexHtml,
   ],
+
   server: {
     cors: true,
     headers: {
@@ -212,13 +208,16 @@ export default defineConfig({
     },
     allowedHosts: true,
   },
+
   resolve: {
     extensions: [".jsx", ".js", ".tsx", ".ts", ".json"],
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
+
   build: {
+    outDir: "dist",
     rollupOptions: {
       external: [
         "@babel/parser",
